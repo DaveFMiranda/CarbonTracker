@@ -2,12 +2,12 @@
 // ^^ this resulted in status code 404 "not found" logged.
 var carbonAPIKey = "SBghLVQMlzBnpWbfkjr1Kg";
 
-function fetchData(){
+//function fetchData(){
  //estimate for vehicles 
 var carbonBaseURL= "https://www.carboninterface.com/api/v1/estimates";   
 
 // Set up the request headers
-var headers = {
+/*var headers = {
   'Authorization': `Bearer ${carbonAPIKey}`,
   'Content-Type': 'application/json'
 };
@@ -21,11 +21,7 @@ var requestData = {
       "distance_unit": "mi"
   };
 
-//convert the request data to query parameters
-  //var queryParams = new URLSearchParams(requestData);
 
-//append the query parameters to the URL
-//var urlWithParams = '${carbonBaseURL}?${queryParams}';
 
 // Make the GET request to the API
 fetch(carbonBaseURL, {
@@ -48,4 +44,26 @@ fetch(carbonBaseURL, {
   });
 };
   //call the function to test
-  fetchData();
+  fetchData();*/
+
+
+  fetch('https://www.carboninterface.com/api/v1/estimates', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer SBghLVQMlzBnpWbfkjr1Kg',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    type: 'vehicle',
+    distance_unit: 'mi',
+    distance_value: 100,
+    vehicle_model_id: '7268a9b7-17e8-4c8d-acca-57059252afe9'
+  })
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    console.log(data.attributes);
+  })
+  .catch(error => console.error(error))
+  
