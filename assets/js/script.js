@@ -1,19 +1,56 @@
+/*
+carbonURL = 'https://www.carboninterface.com/api/v1/estimates';
+
+fetch(carbonURL, {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer SBghLVQMlzBnpWbfkjr1Kg',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    type: 'vehicle',
+    distance_unit: 'mi',
+    distance_value: 200,
+    vehicle_model_id: '7268a9b7-17e8-4c8d-acca-57059252afe9'
+  })
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    const carbonLoad = data.attributes.vehicle_year;
+    console.log(carbonLoad);
+  })
+  .catch(error => console.error(error))
+*/
+
+
+// bing API key
+// ApI3JYuBVGbYyXEUtFZFlsOhrKEsCUyrG5--nprZFoC9KBTb-bhvt2-RJ_9IXiJ-
+
+
+
+
 // Google Maps API key
 // AIzaSyA7CrkqI9weRGAmOEwTvAhi7VMIQ-f-w6Y
 
 // ADD code to establish communication with maps
 // var origin1 = new google.maps.LatLng(55.930385, -3.118425);
-var origin2 = /* get element by ID start-destination*/;
-var destinationA = /* get element by ID end-destination */;
+var origin2 = document.getElementById("start-destination");
+var destinationA = document.getElementById("end-destination");
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
+function initMap() {
+  calculateCarbon ();
+}
+
+function calculateCarbon() {
 var service = new google.maps.DistanceMatrixService();
 service.getDistanceMatrix(
   {
     // origins: [origin1, origin2],
-    origin: [origin2],
+    origins: [origin2.value],
     //destinations: [destinationA, destinationB],
-    destination: [destinationA],
+    destinations: [destinationA.value],
     travelMode: 'DRIVING',
     // transitOptions: TransitOptions,
     // drivingOptions: DrivingOptions,
@@ -38,9 +75,9 @@ function callback(response, status) {
             }
           }
         }
-        consolge.log(distance);
+        console.log(distance);
       }
-
+    }
 
 // add code to send maps start and end point
 
@@ -52,11 +89,23 @@ function callback(response, status) {
 // the thing to send to the carbnotracker API is element.distance.text OR the variable distance OR element.distance.value but we need to figure
 // out how the value translates to text
 
+/*
+
 // Function to calculate carbon footprint based on start and end destinations
 function calculateCarbon() {
+
+
+
+// TOMMY'S START AND END VARIABLES
     // Get input values from HTML form
+    /*
     var start = document.getElementById("start-destination").value;
     var end = document.getElementById("end-destination").value;
+*/
+
+
+/*
+// HERE WE NEED TO INSERT THE CARBONTRACKER API REQUEST AND RESPONSE
   
     // Calculate carbon footprint based on start and end destinations
     var carbonFootprint = calculateDistance(start, end) * getCarbonPerMile();
@@ -65,6 +114,7 @@ function calculateCarbon() {
     displayCarbonResults(carbonFootprint);
   }
   
+  /*
   // Function to calculate distance between two destinations
   function calculateDistance(start, end) {
     // This function would contain the code to calculate the distance between two destinations.
@@ -72,7 +122,8 @@ function calculateCarbon() {
     // For example, you could use a mapping API like Google Maps, or you could use a database of distances between locations.
     // The function should return the distance in miles.
   }
-  
+  */
+ /*
   // Function to get carbon emissions per mile
   function getCarbonPerMile() {
     // This function would contain the code to get the carbon emissions per mile.
@@ -80,7 +131,8 @@ function calculateCarbon() {
     // For example, you could use a database of carbon emissions per mile for different modes of transportation.
     // The function should return the carbon emissions per mile as a number.
   }
-  
+  */
+ /*
   // Function to display carbon footprint results in HTML
   function displayCarbonResults(carbonFootprint) {
     // This function would contain the code to display the carbon footprint results in HTML.
@@ -91,4 +143,4 @@ function calculateCarbon() {
     
     resultsDiv.innerHTML = "<h2>Carbon Footprint Results</h2>";
     resultsDiv.innerHTML += "<p>Your carbon footprint for this trip is " + carbonFootprint + " pounds of CO2.</p>";
-  }
+  } */
