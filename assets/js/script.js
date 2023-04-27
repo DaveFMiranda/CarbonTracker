@@ -1,26 +1,7 @@
-fetch('https://www.carboninterface.com/api/v1/estimates', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer SBghLVQMlzBnpWbfkjr1Kg',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    type: 'vehicle',
-    distance_unit: 'mi',
-    distance_value: 100,
-    vehicle_model_id: '7268a9b7-17e8-4c8d-acca-57059252afe9'
-  })
-})
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    console.log(data.attributes);
-  })
-  .catch(error => console.error(error))
 
 
-// bing API key
-// ApI3JYuBVGbYyXEUtFZFlsOhrKEsCUyrG5--nprZFoC9KBTb-bhvt2-RJ_9IXiJ-
+
+
 
 
 
@@ -63,7 +44,12 @@ function callback(response, status) {
             var results = response.rows[i].elements;
             for (var j = 0; j < results.length; j++) {
               var element = results[j];
-              var distance = element.distance.text;
+              console.log(element.distance.text);
+              distanceWord = element.distance.text;
+              console.log(distanceWord);
+              distanceNumber = distanceWord.replace(/,/g, "");
+              console.log(distanceNumber);
+              var distance = distanceNumber;
               // var duration = element.duration.text;
               var from = origins[i];
               var to = destinations[j];
@@ -71,8 +57,51 @@ function callback(response, status) {
           }
         }
         console.log(distance);
+
+
+        function carbonAPI() {
+          fetch('https://www.carboninterface.com/api/v1/estimates', {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer Qx7s1muNYFpoAmHwkVH88Q',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: 'vehicle',
+              distance_unit: 'mi',
+              // WE NEED TO translate distance result from distance API to carbonAPI distance input format
+              
+              distance_value: distance,
+              vehicle_model_id: '7268a9b7-17e8-4c8d-acca-57059252afe9'
+            })
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+              console.log(data.data.attributes.carbon_lb);
+              carbonOutput = data.data.attributes.carbon_lb;
+              console.log(carbonOutput);
+              var output = document.createElement('output');
+
+              output.textContent = 'Pounds of carbon created: ' + carbonOutput;
+              document.body.appendChild(output);
+            })
+            .catch(error => console.error(error))
+
+
+
+          }
+    
+          carbonAPI();
+
       }
+      
+
+
+
+
     }
+
 
 // add code to send maps start and end point
 
