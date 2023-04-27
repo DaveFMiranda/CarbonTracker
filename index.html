@@ -5,35 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carbon Tracker</title>
-    <!-- <script src="carbon-tracker.js"></script> -->
     <link src="stylesheet" href="./assets/css/style.css"/>
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7CrkqI9weRGAmOEwTvAhi7VMIQ-f-w6Y&callback=initMap">
-    </script>
+    
 </head>
 <body>
-    <h1>Carbon Tracker</h1>
-    <p>Enter a search term to find carbon data:</p>
+  <h1>Carbon Tracker</h1>
+    <p>Enter your starting city and ending city.</p>
     <!-- HTML code for search button -->
     <form>
-		<label for="start-destination">Start Destination:</label>
-		<input type="text" id="start-destination" name="start-destination" required>
-		<br>
-		<label for="end-destination">End Destination:</label>
-		<input type="text" id="end-destination" name="end-destination" required>
-		<br>
-		<button type="button" onclick="calculateCarbon()">Calculate Carbon Footprint</button>
-	</form>
+		  <label for="start-destination">Starting city:</label>
+		    <input type="text" id="start-destination" name="start-destination" required>
+		    <br>
+		  <label for="end-destination">Ending city:</label>
+		    <input type="text" id="end-destination" name="end-destination" required>
+		    <br>
+		  <button type="button" onclick="calculateCarbon()">Calculate Carbon Footprint</button>
+	  </form>
   <div id="carbon-results"></div>
   
-
-
-
-
-
-
-    <script src="./assets/js/script.js"></script>
-
-
+  <script src="./assets/js/script.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7CrkqI9weRGAmOEwTvAhi7VMIQ-f-w6Y&callback=initMap"></script>
 </body>
 </html>
