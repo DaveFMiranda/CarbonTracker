@@ -5,66 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carbon Tracker</title>
-
-    <!-- <script src="carbon-tracker.js"></script> -->
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-
 </head>
 <body>
     <header>
         <h1>Carbon Tracker</h1>
         <h2>Let's find your footprint</h2>
     </header>
-        
-     
-    <!-- HTML code for search button -->
-
     <div class="translucent-form-overlay">
         <form>
             <h3>Fill in the following fields to find carbon data:</h3>
             <div class="row columns">
-                <label>Start Destination:
+                <label>Driving from: 
                     <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required>
                 </label>
             </div>
-        
             <div class="row columns">
-                <label>End Location:
+                <label>To: 
                     <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Florida" required>
                 </label>
             </div>
-          <br>
+            <br>
             <button type="button" onclick="calculateCarbon()" class="button-hover-like button">
                 <span>Calculate Carbon Footprint</span><i class="fa fa-heart"></i>
             </button>
-       </form>
+            <br>
+            <button type="button" onclick="localStorage.clear()" class="button-hover-like button">
+                <span>Reset cumulative carbon tracker</span>
+            </button>
+        </form>
     </div>
-
-    
-
-    
-      
-      
-      
-
-
-
-    
-  
-
-
-
-
-
-
-    
-
-
-
-
-
-  
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7CrkqI9weRGAmOEwTvAhi7VMIQ-f-w6Y&callback=initMap"></script>
     <script src="./assets/js/script.js"></script>
 </body>
