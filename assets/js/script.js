@@ -2,10 +2,6 @@
 // var origin1 = new google.maps.LatLng(55.930385, -3.118425);
 var origin2 = document.getElementById("start-destination");
 var destinationA = document.getElementById("end-destination");
-newKey = localStorage.getItem(1)
-console.log(newKey);
-
-
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
 // Launches call to Maps
@@ -15,14 +11,6 @@ function initMap() {
 
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
-  if(localStorage.length > 0) {
-    let key = localStorage.length;
-    
-    const firstKey = localStorage.key(0);
-    const firstValue = localStorage.getItem(firstKey);
-  newKey = localStorage.getItem(1)
-  console.log(newKey);
-  }
   var service = new google.maps.DistanceMatrixService();
 service.getDistanceMatrix(
   //Variables sent to DMS
@@ -62,7 +50,7 @@ function callback(response, status) {
         }
         console.log(distance);
 
-        // Launches the carbontracker, sends it the distance recieved above
+        // Launches the carbontracker, sends it the distance received above
         function carbonAPI() {
           fetch('https://www.carboninterface.com/api/v1/estimates', {
             method: 'POST',
@@ -87,24 +75,28 @@ function callback(response, status) {
               var output = document.createElement('output');
               output.textContent = 'Pounds of carbon created: ' + carbonOutput;
               document.body.appendChild(output);
-              // create an array to store results
-              totalCarbon = [];
-              totalCarbon.push(carbonOutput);
-              console.log(carbonOutput);
-              console.log(totalCarbon[0]);
-              localStorage.setItem(1, totalCarbon[0]);
-              //
-              // add var carbonOutput to the array
-              // save array to local storage?
-              // Clear button onclick.(localStorage.clear())
+              // Stores the carbon output to local storage
+              localStorage.setItem(localStorage.length+1, carbonOutput);
+              totalCarbonNumber = 0;
+              // Creates an array to receive data from local storage
+              totalCarbonArray = [];
+              // Converts each local storage value to a number and pushes it to the above array
+              for (var k = 0; k < localStorage.length; k++) {
+                totalCarbonArray.push(parseInt(localStorage.getItem(k+1)));
+              }
+              console.log(totalCarbonArray);
+              // Puts out the sum of the numbers in the array/local storage
+              for (var m = 0; m < totalCarbonArray.length; m++){
+                  totalCarbonNumber += totalCarbonArray[m];
+                  console.log(totalCarbonNumber);
+                }
+              
+              // create a field to display total carbon burned (totalCarbonNumber) [this should be hard-coded into the html] Is there a way to have that number load upon page load?
+                // html hardcode a clear button that clears local storage with text "Reset total carbon burned" // Clear button onclick.(localStorage.clear())
+    
+    
 
-              /*
-              local storage commands:
-              localStorage.setItem(key, value)
-              localStoage.getItem(key)
-              localStorage.removeItem(key)
-              localStorage.key(index)
-              */
+        
             })
             .catch(error => console.error(error))
           }
