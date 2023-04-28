@@ -97,7 +97,9 @@ function callback(response, status) {
               
               // create a field to display total carbon burned (totalCarbonNumber) [this should be hard-coded into the html] Is there a way to have that number load upon page load?
                 // html hardcode a clear button that clears local storage with text "Reset total carbon burned" // Clear button onclick.(localStorage.clear())
-    
+              var outputTotal = document.createElement('output');
+              outputTotal.textContent = 'Total pounds of carbon: ' + totalCarbonNumber;
+              document.body.appendChild(outputTotal);
     
 
         
