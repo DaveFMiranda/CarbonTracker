@@ -33,10 +33,10 @@ function callback(response, status) {
   statusCheck = response.rows[0].elements[0].status;
   console.log(statusCheck);
   if (statusCheck == 'NOT_FOUND') {
-    alert("Distance information is not available");
+    alert("Distance information is not available. Please add a more start location or destination.");
   }
     //'ZERO_RESULTS'
-    //
+    //alert(You can't get there from here.)
       if (status == 'OK') {
           var origins = response.originAddresses;
           var destinations = response.destinationAddresses;
