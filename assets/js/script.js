@@ -11,7 +11,7 @@ function initMap() {
 
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
-var service = new google.maps.DistanceMatrixService();
+  var service = new google.maps.DistanceMatrixService();
 service.getDistanceMatrix(
   //Variables sent to DMS
   {
@@ -50,7 +50,7 @@ function callback(response, status) {
         }
         console.log(distance);
 
-        // Launches the carbontracker, sends it the distance recieved above
+        // Launches the carbontracker, sends it the distance received above
         function carbonAPI() {
           fetch('https://www.carboninterface.com/api/v1/estimates', {
             method: 'POST',
@@ -75,6 +75,28 @@ function callback(response, status) {
               var output = document.createElement('output');
               output.textContent = 'Pounds of carbon created: ' + carbonOutput;
               document.body.appendChild(output);
+              // Stores the carbon output to local storage
+              localStorage.setItem(localStorage.length+1, carbonOutput);
+              totalCarbonNumber = 0;
+              // Creates an array to receive data from local storage
+              totalCarbonArray = [];
+              // Converts each local storage value to a number and pushes it to the above array
+              for (var k = 0; k < localStorage.length; k++) {
+                totalCarbonArray.push(parseInt(localStorage.getItem(k+1)));
+              }
+              console.log(totalCarbonArray);
+              // Puts out the sum of the numbers in the array/local storage
+              for (var m = 0; m < totalCarbonArray.length; m++){
+                  totalCarbonNumber += totalCarbonArray[m];
+                  console.log(totalCarbonNumber);
+                }
+              
+              // create a field to display total carbon burned (totalCarbonNumber) [this should be hard-coded into the html] Is there a way to have that number load upon page load?
+                // html hardcode a clear button that clears local storage with text "Reset total carbon burned" // Clear button onclick.(localStorage.clear())
+    
+    
+
+        
             })
             .catch(error => console.error(error))
           }
