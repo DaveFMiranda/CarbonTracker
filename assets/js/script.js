@@ -2,6 +2,10 @@
 // var origin1 = new google.maps.LatLng(55.930385, -3.118425);
 var origin2 = document.getElementById("start-destination");
 var destinationA = document.getElementById("end-destination");
+newKey = localStorage.getItem(1)
+console.log(newKey);
+
+
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
 // Launches call to Maps
@@ -11,7 +15,15 @@ function initMap() {
 
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
-var service = new google.maps.DistanceMatrixService();
+  if(localStorage.length > 0) {
+    let key = localStorage.length;
+    
+    const firstKey = localStorage.key(0);
+    const firstValue = localStorage.getItem(firstKey);
+  newKey = localStorage.getItem(1)
+  console.log(newKey);
+  }
+  var service = new google.maps.DistanceMatrixService();
 service.getDistanceMatrix(
   //Variables sent to DMS
   {
@@ -75,6 +87,24 @@ function callback(response, status) {
               var output = document.createElement('output');
               output.textContent = 'Pounds of carbon created: ' + carbonOutput;
               document.body.appendChild(output);
+              // create an array to store results
+              totalCarbon = [];
+              totalCarbon.push(carbonOutput);
+              console.log(carbonOutput);
+              console.log(totalCarbon[0]);
+              localStorage.setItem(1, totalCarbon[0]);
+              //
+              // add var carbonOutput to the array
+              // save array to local storage?
+              // Clear button onclick.(localStorage.clear())
+
+              /*
+              local storage commands:
+              localStorage.setItem(key, value)
+              localStoage.getItem(key)
+              localStorage.removeItem(key)
+              localStorage.key(index)
+              */
             })
             .catch(error => console.error(error))
           }
