@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 
-  
 </head>
 <body>
     <header>
@@ -23,45 +22,50 @@
 
     <div class="translucent-form-overlay">
         <form>
-          <h3>Fill in the following fields to find carbon data:</h3>
-          <div class="row columns">
-            <label>Start Destination:
-              <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required>
-            </label>
-          </div>
+            <h3>Fill in the following fields to find carbon data:</h3>
+            <div class="row columns">
+                <label>Start Destination:
+                    <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required>
+                </label>
+            </div>
         
-          <div class="row columns">
-            <label>End Location:
-              <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Florida" required>
-            </label>
-          </div>
+            <div class="row columns">
+                <label>End Location:
+                    <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Florida" required>
+                </label>
+            </div>
           <br>
-          <button type="button" onclick="calculateCarbon()" class="button-hover-like button">
-            <span>Calculate Carbon Footprint</span><i class="fa fa-heart"></i>
-          </button>
+            <button type="button" onclick="calculateCarbon()" class="button-hover-like button">
+                <span>Calculate Carbon Footprint</span><i class="fa fa-heart"></i>
+            </button>
        </form>
+    </div>
+
+    
+
     
       
       
       
+
+
+
+    
   
+
+
+
+
+
+
+    
+
+
+
+
+
   
-    <div></div>
-  
-<div id="carbon-results"> </div>
-
-
-
-
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7CrkqI9weRGAmOEwTvAhi7VMIQ-f-w6Y&callback=initMap"></script>
     <script src="./assets/js/script.js"></script>
-
-
-
-
-
-  
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7CrkqI9weRGAmOEwTvAhi7VMIQ-f-w6Y&callback=initMap"></script>
-
 </body>
 </html>
