@@ -44,6 +44,9 @@ function callback(response, status) {
             var results = response.rows[i].elements;
             for (var j = 0; j < results.length; j++) {
               var element = results[j];
+              if (!element.distance || !element.distance.text) {
+                alert("Distance information is not available");
+              }
               console.log(element.distance.text);
               distanceWord = element.distance.text;
               console.log(distanceWord);
