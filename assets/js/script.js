@@ -80,9 +80,9 @@ function callback(response, status) {
               // Display an alert message with the calculated distance
                 alert("The distance between " + from + " and " + to + " is " + distance + " miles.");
 
-<<<<<<< HEAD
+
             }
-=======
+
         // Launches the carbontracker, sends it the distance received above
         function carbonAPI() {
           fetch('https://www.carboninterface.com/api/v1/estimates', {
@@ -126,32 +126,27 @@ function callback(response, status) {
               
               // create a field to display total carbon burned (totalCarbonNumber) [this should be hard-coded into the html] Is there a way to have that number load upon page load?
                 // html hardcode a clear button that clears local storage with text "Reset total carbon burned" // Clear button onclick.(localStorage.clear())
+                function clearFields() {
+                    document.getElementById("start-destination").value = "";
+                    document.getElementById("end-destination").value = "";
+                }
+                  
                 
                   
-    
+
+              var outputTotal = document.createElement('output');
+              outputTotal.textContent = 'Total pounds of carbon: ' + totalCarbonNumber;
+              document.body.appendChild(outputTotal);
+
 
         
             })
             .catch(error => console.error(error))
->>>>>>> 5c359c5d072e7f8cdb3c61f54f0bab8916aebc32
+
           }
           console.log(distance);
-        } else {
-          // Handle error status codes
-          if (status == 'INVALID_REQUEST') {
-            alert("The request was invalid. Please try again.");
-          } else if (status == 'MAX_ELEMENTS_EXCEEDED') {
-            alert("The product of origins and destinations exceeds the per-query limit. Please try a smaller area.");
-          } else if (status == 'OVER_QUERY_LIMIT') {
-            alert("The application has exceeded its quota limit. Please try again later.");
-          } else if (status == 'REQUEST_DENIED') {
-            alert("The request was denied. Please check your API key.");
-          } else if (status == 'UNKNOWN_ERROR') {
-            alert("An unknown error occurred. Please try again.");
-          } else if (status == 'ZERO_RESULTS') {
-            alert("No results found for the requested locations.");
-          }
+        }  
+         
         }
     };
   }
-  
