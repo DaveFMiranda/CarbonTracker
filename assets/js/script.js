@@ -38,6 +38,10 @@ function callback(response, status) {
             var results = response.rows[i].elements;
             for (var j = 0; j < results.length; j++) {
               var element = results[j];
+              if (!element.distance || !element.distance.text) {
+                alert("Distance information is not available");
+              }
+          
               distanceWord = element.distance.text;
               // Removes any commas in the return data so the carbontracker doesn't get confused and turn commas into decimal points
               distanceNumber = distanceWord.replace(/,/g, "");
