@@ -29,7 +29,16 @@ service.getDistanceMatrix(
 
 // Return data from DMS
 function callback(response, status) {
-        if (status == 'OK') {
+
+  statusCheck = response.rows[0].elements[0].status;
+  console.log(statusCheck);
+  if (statusCheck == 'NOT_FOUND') {
+    alert("Distance information is not available. If there is more than one place named " + origin2.value + " or " + destinationA.value + ", please be more specific.");
+  }
+  if (statusCheck == "ZERO_RESULTS"){
+    alert("You can't get there form here.");
+  }
+      if (status == 'OK') {
           var origins = response.originAddresses;
           var destinations = response.destinationAddresses;
       
@@ -38,9 +47,7 @@ function callback(response, status) {
             var results = response.rows[i].elements;
             for (var j = 0; j < results.length; j++) {
               var element = results[j];
-              if (!element.distance || !element.distance.text) {
-                alert("Distance information is not available");
-              }
+             
           
               distanceWord = element.distance.text;
               // Removes any commas in the return data so the carbontracker doesn't get confused and turn commas into decimal points
@@ -51,7 +58,9 @@ function callback(response, status) {
               var to = destinations[j];
             }
           }
-        }
+        } 
+        console.log(response);
+          
         console.log(distance);
 
         // Launches the carbontracker, sends it the distance received above
