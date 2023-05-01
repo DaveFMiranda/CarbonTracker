@@ -2,6 +2,12 @@
 // var origin1 = new google.maps.LatLng(55.930385, -3.118425);
 var origin2 = document.getElementById("start-destination");
 var destinationA = document.getElementById("end-destination");
+var carMake = document.getElementById('car-make');
+var carModel = document.getElementById('car-model');
+var carYear = parseInt(document.getElementById('car-year').value);
+var makeMatchFound = false;
+var modelMatchFound = false;
+// var yearMatchFound = false;
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
 // Launches call to Maps
@@ -54,8 +60,94 @@ function callback(response, status) {
               var to = destinations[j];
             }
           }
-        }           
+        }   
         console.log(distance);
+
+      // makeQueryURL = https://www.carboninterface.com/api/v1/vehicle_makes + api key     
+      fetch('https://www.carboninterface.com/api/v1/vehicle_makes', {
+        method: 'GET',
+        headers: {
+          "Authorization": 'Bearer Qx7s1muNYFpoAmHwkVH88Q',
+          "Content-Type": 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        console.log(data[0].data.attributes.name)
+        console.log(carMake.value)
+        for (n = 0; n < data.length; n++) {
+          if (data[n].data.attributes.name === carMake.value) {
+            makeMatchFound = true;
+            var makeID = data[n].data.id;
+
+
+            fetch('https://www.carboninterface.com/api/v1/vehicle_makes/' + makeID + '/vehicle_models', {
+              method: 'GET',
+              headers: {
+                "Authorization": 'Bearer Qx7s1muNYFpoAmHwkVH88Q',
+                "Content-Type": 'application/json'
+              }
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+              console.log(data[0].data.attributes.vehicle_make)
+              console.log(data[0].data.attributes.year)
+              console.log(carModel.value)
+              for (p = 0; p < data.length; p++) {
+                
+                if (data[p].data.attributes.vehicle_make === carModel.value && data[p].data.attributes.year === carYear.value) {
+                  modelMatchFound = true;
+                  var modelID = data[p].data.id;
+                }
+              }
+              console.log(modelMatchFound);
+              console.log(modelID);
+            })
+            .catch(error => console.error(error))
+
+
+
+
+          }
+        }
+        console.log(makeMatchFound);
+        console.log(makeID);
+      })
+      .catch(error => console.error(error))
+
+      
+
+      
+    //  IF no data comes back, vehicle_model_id: 1997 toyota corolla, which gets 25 mpg, just under the national average of 25.4
+
+
+    console.log(carMake.value);
+    console.log(carModel.value);
+    console.log(carYear.value);
+       
+    
+    /*
+       
+
+        // then the returned ID goes into...
+        GET https://www.carboninterface.com/api/v1/vehicle_make/<vehicle_make_id>/vehicle_models
+
+        THEN GET THE LIST OF MODELS USING:
+        curl "https://www.carboninterface.com/api/v1/vehicle_makes/2b1d0cd5-59be-4010-83b3-b60c5e5342da/vehicle_models"
+  -H "Authorization: Bearer API_KEY"
+  -H "Content-Type: application/json"
+  -X GET
+
+        THEN take the data and cycle through to make year and model match user input year and model,
+        then that sets the vehicle_model_ID that goes into the carbon API query
+
+
+
+        IF no data comes back, vehicle_model_id: 1997 toyota corolla, which gets 25 mpg, just under the national average of 25.4
+
+        */
 
         // Launches the carbontracker, sends it the distance received above
         function carbonAPI() {
@@ -70,6 +162,7 @@ function callback(response, status) {
               type: 'vehicle',
               distance_unit: 'mi',              
               distance_value: distance,
+              // REPLACE THIS WITH A VARIABLE
               vehicle_model_id: '7268a9b7-17e8-4c8d-acca-57059252afe9'
             })
           })
