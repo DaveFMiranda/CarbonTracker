@@ -59,7 +59,7 @@ function callback(response, status) {
           fetch('https://www.carboninterface.com/api/v1/estimates', {
             method: 'POST',
             headers: {
-              'Authorization': 'Bearer zIk4XBXPZ3csekiiWwTg',
+              'Authorization': 'Bearer 6V3Qr5O3aMsdS2W4OBExZw',
               'Content-Type': 'application/json'
             },
             // This could be updated to use different types of transport, unit names, and makes/models of car
@@ -97,6 +97,8 @@ function callback(response, status) {
               outputTotal.setAttribute('id', 'outputTotal');
               outputTotal.textContent = 'Driving all of the trips you\'ve searched so far would release ' + totalCarbonNumber + ' pounds of carbon into the atmosphere.';
               document.body.appendChild(outputTotal);
+              
+              
             })
             .catch(error => console.error(error))
           }
@@ -115,6 +117,8 @@ reset.addEventListener('click', function(resetButton) {
 function saveToLocalStorage(){
 // Stores the carbon output to local storage
 localStorage.setItem(localStorage.length+1, carbonOutput);
+displayAlways();
+clearDisplay();
 }
 //clears only the display--keeps local storage
 function clearDisplay(){
@@ -123,4 +127,42 @@ function clearDisplay(){
   var clearOutputTotal = document.getElementById('outputTotal');
   clearOutputTotal.remove();
 }
+function clearStorage(){
+  var clearStorage = document.getElementById("totalResults");
+  clearStorage.remove();
+}
+//function for sum of total stored
+function calculatedTotal(){
+
+  totalCarbonNumber = 0;
+  // Creates an array to receive data from local storage
+  totalCarbonArray = [];
+  
+  // Converts each local storage value to a number and pushes it to the above array
+  for (var k = 0; k < localStorage.length; k++) {
+    totalCarbonArray.push(parseInt(localStorage.getItem(k+1)));
+  }
+  console.log(totalCarbonArray);
+  // Puts out the sum of the numbers in the array/local storage
+  for (var m = 0; m < totalCarbonArray.length; m++){
+      totalCarbonNumber += totalCarbonArray[m];
+    }
+    console.log(totalCarbonNumber);
+    
+}
+//displays total sum on screen load
+function displayAlways(){
+  calculatedTotal();
+
+  var displayArray = document.createElement("p")
+  displayArray.textContent = "Trip distances Saved: " + totalCarbonArray;
+
+  var displayCarbon = document.createElement("p")
+  displayCarbon.textContent= totalCarbonNumber + " lbs of carbon";
+
+  var displayTable = document.getElementById("totalResults");
+  displayTable.appendChild(displayArray);
+  displayTable.appendChild(displayCarbon);
+}
+displayAlways();
 

@@ -30,7 +30,12 @@ h2{
     font-size: 200%;
     padding-bottom: 40px;
 }
-
+.container{
+  display: flex;
+}
+.translucent-form-overlay, .localStorageTable{
+  flex: 1;
+}
 
 .translucent-form-overlay {
     display:block;
@@ -119,5 +124,40 @@ h2{
   
   
 
+  .carbon-table {
+    background-color: #fefefe;
+    border: solid 1px #cacaca;
+    width: 100%;
+    text-align: center;
+    list-style-type: none;
+  }
+  
+  .carbon-table li {
+    border-bottom: dotted 1px #cacaca;
+    padding: 0.875rem 1.125rem;
+  }
+  
+  .carbon-table li:last-child {
+    border-bottom: 0;
+  }
+  
+  .carbon-table .title {
+    background-color: #0a0a0a;
+    color: #fefefe;
+    border-bottom: 0;
+  }
+  
+  .carbon-table #totalResults {
+    background-color: #e6e6e6;
+    font-size: 2rem;
+    border-bottom: 0;
+  }
+  
+  
+  .carbon-table :last-child {
+    margin-bottom: 0;
+  }
+  
+  
   
   
