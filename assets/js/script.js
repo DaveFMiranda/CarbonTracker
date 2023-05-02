@@ -116,7 +116,7 @@ function saveToLocalStorage(){
 // Stores the carbon output to local storage
 localStorage.setItem(localStorage.length+1, carbonOutput);
 }
-
+//clears only the display--keeps local storage
 function clearDisplay(){
   var display = document.getElementById("output");
   output.innerHTML = "";
