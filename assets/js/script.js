@@ -48,7 +48,8 @@ function callback(response, status) {
               // Removes any commas in the return data so the carbontracker doesn't get confused and turn commas into decimal points
               distanceNumber = distanceWord.replace(/,/g, "");
               var distance = distanceNumber;
-              // var duration = element.duration.text;
+              var duration = element.duration.text;
+              console.log(duration);
               var from = origins[i];
               var to = destinations[j];
             }
@@ -76,6 +77,7 @@ function callback(response, status) {
             .then(data => {
               carbonOutput = data.data.attributes.carbon_lb;
               // Creates an element to display the result and displays the result
+
               var output = document.createElement('div');
               output.setAttribute('id', 'output');
               output.textContent = 'Driving from ' + origins + ' to ' + destinations + ' will release ' + carbonOutput + ' pounds of carbon into the atmosphere.';
