@@ -106,6 +106,7 @@ function callback(response, status) {
       }       
     }
 
+/*
 var reset = document.getElementById('reset');
 reset.addEventListener('click', function(resetButton) {
   var clearOutput = document.getElementById('output');
@@ -113,6 +114,7 @@ reset.addEventListener('click', function(resetButton) {
   var clearOutputTotal = document.getElementById('outputTotal');
   clearOutputTotal.remove();
 })
+*/
 
 function saveToLocalStorage(){
 // Stores the carbon output to local storage
