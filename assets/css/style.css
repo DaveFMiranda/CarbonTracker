@@ -46,6 +46,7 @@ h2{
   
   .translucent-form-overlay .columns.row {
     display: block;
+    justify-content: center;
   }
   
   
