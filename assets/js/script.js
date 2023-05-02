@@ -4,9 +4,7 @@ var origin2 = document.getElementById("start-destination");
 var destinationA = document.getElementById("end-destination");
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
-// Launches call to Maps
-function initMap() {
-}
+
 
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
