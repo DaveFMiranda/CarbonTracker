@@ -7,19 +7,15 @@ var carModel = document.getElementById('car-model');
 var carYear = document.getElementById('car-year');
 var makeMatchFound = false;
 var modelMatchFound = false;
-
+var modelID = '15b8e4d8-9ea3-41bd-93df-770fa2c932ef';
+console.log(modelID);
 // var yearMatchFound = false;
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
-// Launches call to Maps
-function initMap() {
-}
-
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
-  makeID = '218f4103-d9b1-4c09-8f4b-e89d0cea20b6';
   var service = new google.maps.DistanceMatrixService();
-service.getDistanceMatrix(
+  service.getDistanceMatrix(
   //Variables sent to DMS
   {
     // origins: [origin1, origin2],
@@ -64,6 +60,7 @@ function callback(response, status) {
         }   
         console.log(distance);
 
+        
       // makeQueryURL = https://www.carboninterface.com/api/v1/vehicle_makes + api key     
       fetch('https://www.carboninterface.com/api/v1/vehicle_makes', {
         method: 'GET',
@@ -76,12 +73,13 @@ function callback(response, status) {
       .then(data => {
         console.log(data)
         console.log(data[0].data.attributes.name)
+        console.log(data[0].data.id)
         console.log(carMake.value)
         for (n = 0; n < data.length; n++) {
           if (data[n].data.attributes.name === carMake.value) {
             makeMatchFound = true;
             var makeID = data[n].data.id;
-
+           // console.log(makeId);
 
             fetch('https://www.carboninterface.com/api/v1/vehicle_makes/' + makeID + '/vehicle_models', {
               method: 'GET',
@@ -96,14 +94,17 @@ function callback(response, status) {
               console.log(data[0].data.attributes.vehicle_make)
               console.log(data[0].data.attributes.year)
               console.log(data[0].data.attributes.name)
+              console.log(data[0].data.id)
               console.log(carYear.value)
 
               console.log(carModel.value)
+              
+
               for (p = 0; p < data.length; p++) {
                 
                 if (data[p].data.attributes.name === carModel.value && data[p].data.attributes.year === parseInt(carYear.value)) {
                   modelMatchFound = true;
-                  var modelID = data[p].data.id;
+                  modelID = data[p].data.id;
                 }
               }
               console.log(modelMatchFound);
@@ -155,6 +156,7 @@ function callback(response, status) {
 
         // Launches the carbontracker, sends it the distance received above
         function carbonAPI() {
+          console.log(modelID);
           fetch('https://www.carboninterface.com/api/v1/estimates', {
             method: 'POST',
             headers: {
@@ -167,7 +169,7 @@ function callback(response, status) {
               distance_unit: 'mi',              
               distance_value: distance,
               // REPLACE THIS WITH A VARIABLE
-              vehicle_model_id: makeID
+              vehicle_model_id: modelID
             })
           })
             .then(response => response.json())
