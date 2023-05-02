@@ -12,7 +12,7 @@ function initMap() {
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
   var service = new google.maps.DistanceMatrixService();
-service.getDistanceMatrix(
+  service.getDistanceMatrix(
   //Variables sent to DMS
   {
     // origins: [origin1, origin2],
@@ -77,8 +77,10 @@ function callback(response, status) {
             .then(data => {
               carbonOutput = data.data.attributes.carbon_lb;
               // Creates an element to display the result and displays the result
-              var output = document.createElement('output');
-              output.textContent = 'Driving from ' + origins + ' to ' + destinations + ' will release ' + carbonOutput + ' pounds of carbon into the atmosphere and will take you ' + duration + '.';
+
+              var output = document.createElement('div');
+              output.setAttribute('id', 'output');
+              output.textContent = 'Driving from ' + origins + ' to ' + destinations + ' will release ' + carbonOutput + ' pounds of carbon into the atmosphere.';
               document.body.appendChild(output);
               // Stores the carbon output to local storage
               localStorage.setItem(localStorage.length+1, carbonOutput);
@@ -95,7 +97,8 @@ function callback(response, status) {
                 }
                 console.log(totalCarbonNumber);
               // Displays the total carbon output
-              var outputTotal = document.createElement('outputTotal');
+              var outputTotal = document.createElement('div');
+              outputTotal.setAttribute('id', 'outputTotal');
               outputTotal.textContent = 'Driving all of the trips you\'ve searched so far would release ' + totalCarbonNumber + ' pounds of carbon into the atmosphere.';
               document.body.appendChild(outputTotal);
             })
@@ -104,3 +107,11 @@ function callback(response, status) {
           carbonAPI();
       }       
     }
+
+var reset = document.getElementById('reset');
+reset.addEventListener('click', function(resetButton) {
+  var clearOutput = document.getElementById('output');
+  clearOutput.remove();
+  var clearOutputTotal = document.getElementById('outputTotal');
+  clearOutputTotal.remove();
+})
