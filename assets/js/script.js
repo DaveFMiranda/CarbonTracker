@@ -12,6 +12,87 @@ console.log(modelID);
 // var yearMatchFound = false;
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
+function setCar() {
+  var storeID;
+// makeQueryURL = https://www.carboninterface.com/api/v1/vehicle_makes + api key     
+fetch('https://www.carboninterface.com/api/v1/vehicle_makes', {
+  method: 'GET',
+  headers: {
+    "Authorization": 'Bearer Qx7s1muNYFpoAmHwkVH88Q',
+    "Content-Type": 'application/json'
+  }
+})
+.then(response => response.json())
+.then(data => {
+  console.log(data)
+  console.log(data[0].data.attributes.name)
+  console.log(data[0].data.id)
+  console.log(carMake.value)
+  for (n = 0; n < data.length; n++) {
+    if (data[n].data.attributes.name === carMake.value) {
+      makeMatchFound = true;
+      var makeID = data[n].data.id;
+     // console.log(makeId);
+
+      fetch('https://www.carboninterface.com/api/v1/vehicle_makes/' + makeID + '/vehicle_models', {
+        method: 'GET',
+        headers: {
+          "Authorization": 'Bearer Qx7s1muNYFpoAmHwkVH88Q',
+          "Content-Type": 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        console.log(data[0].data.attributes.vehicle_make)
+        console.log(data[0].data.attributes.year)
+        console.log(data[0].data.attributes.name)
+        console.log(data[0].data.id)
+        console.log(carYear.value)
+
+        console.log(carModel.value)
+        
+
+        for (p = 0; p < data.length; p++) {
+          
+          if (data[p].data.attributes.name === carModel.value && data[p].data.attributes.year === parseInt(carYear.value)) {
+            modelMatchFound = true;
+            console.log(data[p].data.id);
+            break;
+          }
+        }
+        console.log(data[p].data.id);
+        console.log(modelMatchFound);
+        console.log(storeID);
+        let modelID = data[p].data.id;
+        console.log(modelID);
+      })
+      .catch(error => console.error(error))
+      console.log(modelID);
+
+
+
+
+    }
+  }
+  console.log(makeMatchFound);
+  console.log(makeID);
+})
+.catch(error => console.error(error))
+
+
+
+
+//  IF no data comes back, vehicle_model_id: 1997 toyota corolla, which gets 25 mpg, just under the national average of 25.4
+
+
+console.log(carMake.value);
+console.log(carModel.value);
+console.log(carYear.value);
+
+modelID = storeID;
+}
+console.log(modelID);
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
   var service = new google.maps.DistanceMatrixService();
@@ -61,76 +142,7 @@ function callback(response, status) {
         console.log(distance);
 
         
-      // makeQueryURL = https://www.carboninterface.com/api/v1/vehicle_makes + api key     
-      fetch('https://www.carboninterface.com/api/v1/vehicle_makes', {
-        method: 'GET',
-        headers: {
-          "Authorization": 'Bearer Qx7s1muNYFpoAmHwkVH88Q',
-          "Content-Type": 'application/json'
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        console.log(data[0].data.attributes.name)
-        console.log(data[0].data.id)
-        console.log(carMake.value)
-        for (n = 0; n < data.length; n++) {
-          if (data[n].data.attributes.name === carMake.value) {
-            makeMatchFound = true;
-            var makeID = data[n].data.id;
-           // console.log(makeId);
-
-            fetch('https://www.carboninterface.com/api/v1/vehicle_makes/' + makeID + '/vehicle_models', {
-              method: 'GET',
-              headers: {
-                "Authorization": 'Bearer Qx7s1muNYFpoAmHwkVH88Q',
-                "Content-Type": 'application/json'
-              }
-            })
-            .then(response => response.json())
-            .then(data => {
-              console.log(data)
-              console.log(data[0].data.attributes.vehicle_make)
-              console.log(data[0].data.attributes.year)
-              console.log(data[0].data.attributes.name)
-              console.log(data[0].data.id)
-              console.log(carYear.value)
-
-              console.log(carModel.value)
-              
-
-              for (p = 0; p < data.length; p++) {
-                
-                if (data[p].data.attributes.name === carModel.value && data[p].data.attributes.year === parseInt(carYear.value)) {
-                  modelMatchFound = true;
-                  modelID = data[p].data.id;
-                }
-              }
-              console.log(modelMatchFound);
-              console.log(modelID);
-            })
-            .catch(error => console.error(error))
-
-
-
-
-          }
-        }
-        console.log(makeMatchFound);
-        console.log(makeID);
-      })
-      .catch(error => console.error(error))
-
       
-
-      
-    //  IF no data comes back, vehicle_model_id: 1997 toyota corolla, which gets 25 mpg, just under the national average of 25.4
-
-
-    console.log(carMake.value);
-    console.log(carModel.value);
-    console.log(carYear.value);
        
     
     /*
