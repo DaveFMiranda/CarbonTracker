@@ -98,10 +98,7 @@ function callback(response, status) {
               outputTotal.textContent = 'Driving all of the trips you\'ve searched so far would release ' + totalCarbonNumber + ' pounds of carbon into the atmosphere.';
               document.body.appendChild(outputTotal);
               
-              var displayCarbon = document.createElement("p")
-              displayCarbon.textContent= totalCarbonNumber + " lbs of carbon";
-              var displayTable = document.getElementById("totalResults");
-              displayTable.appendChild(displayCarbon);
+              
             })
             .catch(error => console.error(error))
           }
@@ -132,3 +129,23 @@ function clearStorage(){
   var clearStorage = document.getElementById("totalResults");
   clearStorage.remove();
 }
+//function to display the total stored on page load
+function displayAlways(){
+  totalCarbonNumber = 0;
+  // Creates an array to receive data from local storage
+  totalCarbonArray = [];
+  // Converts each local storage value to a number and pushes it to the above array
+  for (var k = 0; k < localStorage.length; k++) {
+    totalCarbonArray.push(parseInt(localStorage.getItem(k+1)));
+  }
+  // Puts out the sum of the numbers in the array/local storage
+  for (var m = 0; m < totalCarbonArray.length; m++){
+      totalCarbonNumber += totalCarbonArray[m];
+    }
+    console.log(totalCarbonNumber);
+    var displayCarbon = document.createElement("p")
+              displayCarbon.textContent= totalCarbonNumber + " lbs of carbon";
+              var displayTable = document.getElementById("totalResults");
+              displayTable.appendChild(displayCarbon);
+}
+displayAlways();
