@@ -4,19 +4,20 @@ var origin2 = document.getElementById("start-destination");
 var destinationA = document.getElementById("end-destination");
 var carMake = document.getElementById('car-make');
 var carModel = document.getElementById('car-model');
-var carYear = parseInt(document.getElementById('car-year').value);
+var carYear = document.getElementById('car-year');
 var makeMatchFound = false;
 var modelMatchFound = false;
+
 // var yearMatchFound = false;
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
 // Launches call to Maps
 function initMap() {
-  calculateCarbon ();
 }
 
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
+  makeID = '218f4103-d9b1-4c09-8f4b-e89d0cea20b6';
   var service = new google.maps.DistanceMatrixService();
 service.getDistanceMatrix(
   //Variables sent to DMS
@@ -94,10 +95,13 @@ function callback(response, status) {
               console.log(data)
               console.log(data[0].data.attributes.vehicle_make)
               console.log(data[0].data.attributes.year)
+              console.log(data[0].data.attributes.name)
+              console.log(carYear.value)
+
               console.log(carModel.value)
               for (p = 0; p < data.length; p++) {
                 
-                if (data[p].data.attributes.vehicle_make === carModel.value && data[p].data.attributes.year === carYear.value) {
+                if (data[p].data.attributes.name === carModel.value && data[p].data.attributes.year === parseInt(carYear.value)) {
                   modelMatchFound = true;
                   var modelID = data[p].data.id;
                 }
@@ -163,7 +167,7 @@ function callback(response, status) {
               distance_unit: 'mi',              
               distance_value: distance,
               // REPLACE THIS WITH A VARIABLE
-              vehicle_model_id: '7268a9b7-17e8-4c8d-acca-57059252afe9'
+              vehicle_model_id: makeID
             })
           })
             .then(response => response.json())
