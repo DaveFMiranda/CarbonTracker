@@ -112,3 +112,7 @@ reset.addEventListener('click', function(resetButton) {
   var clearOutputTotal = document.getElementById('outputTotal');
   clearOutputTotal.remove();
 })
+
+function saveToLocalStorage(){
+  
+}
