@@ -117,6 +117,7 @@ reset.addEventListener('click', function(resetButton) {
 function saveToLocalStorage(){
 // Stores the carbon output to local storage
 localStorage.setItem(localStorage.length+1, carbonOutput);
+displayAlways();
 }
 //clears only the display--keeps local storage
 function clearDisplay(){
@@ -129,8 +130,9 @@ function clearStorage(){
   var clearStorage = document.getElementById("totalResults");
   clearStorage.remove();
 }
-//function to display the total stored on page load
-function displayAlways(){
+//function for sum of total stored
+function calculatedTotal(){
+
   totalCarbonNumber = 0;
   // Creates an array to receive data from local storage
   totalCarbonArray = [];
@@ -143,9 +145,15 @@ function displayAlways(){
       totalCarbonNumber += totalCarbonArray[m];
     }
     console.log(totalCarbonNumber);
-    var displayCarbon = document.createElement("p")
-              displayCarbon.textContent= totalCarbonNumber + " lbs of carbon";
-              var displayTable = document.getElementById("totalResults");
-              displayTable.appendChild(displayCarbon);
+    
+}
+//displays total sum on screen load
+function displayAlways(){
+  calculatedTotal();
+var displayCarbon = document.createElement("p")
+displayCarbon.textContent= totalCarbonNumber + " lbs of carbon";
+var displayTable = document.getElementById("totalResults");
+displayTable.appendChild(displayCarbon);
 }
 displayAlways();
+
