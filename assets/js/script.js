@@ -6,7 +6,6 @@ var destinationA = document.getElementById("end-destination");
 
 // Launches call to Maps
 function initMap() {
-  calculateCarbon ();
 }
 
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
