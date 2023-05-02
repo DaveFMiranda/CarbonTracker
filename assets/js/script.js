@@ -59,7 +59,7 @@ function callback(response, status) {
           fetch('https://www.carboninterface.com/api/v1/estimates', {
             method: 'POST',
             headers: {
-              'Authorization': 'Bearer Qx7s1muNYFpoAmHwkVH88Q',
+              'Authorization': 'Bearer zIk4XBXPZ3csekiiWwTg',
               'Content-Type': 'application/json'
             },
             // This could be updated to use different types of transport, unit names, and makes/models of car
@@ -79,8 +79,7 @@ function callback(response, status) {
               output.setAttribute('id', 'output');
               output.textContent = 'Driving from ' + origins + ' to ' + destinations + ' will release ' + carbonOutput + ' pounds of carbon into the atmosphere.';
               document.body.appendChild(output);
-              // Stores the carbon output to local storage
-              localStorage.setItem(localStorage.length+1, carbonOutput);
+              
               totalCarbonNumber = 0;
               // Creates an array to receive data from local storage
               totalCarbonArray = [];
@@ -114,5 +113,11 @@ reset.addEventListener('click', function(resetButton) {
 })
 
 function saveToLocalStorage(){
-  
+// Stores the carbon output to local storage
+localStorage.setItem(localStorage.length+1, carbonOutput);
+}
+
+function clearDisplay(){
+  var display = document.getElementById("output");
+  output.innerHTML = "";
 }
