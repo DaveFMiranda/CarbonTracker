@@ -155,15 +155,15 @@ function calculatedTotal(){
 //displays total sum on screen load
 function displayAlways(){
   calculatedTotal();
-
+/*
   var displayArray = document.createElement("p")
   displayArray.textContent = "Trip distances Saved: " + totalCarbonArray;
-
+*/
   var displayCarbon = document.createElement("p")
   displayCarbon.textContent= totalCarbonNumber + " lbs of carbon";
 
   var displayTable = document.getElementById("totalResults");
-  displayTable.appendChild(displayArray);
+  // displayTable.appendChild(displayArray);
   displayTable.appendChild(displayCarbon);
 }
 displayAlways();
