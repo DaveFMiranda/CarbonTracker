@@ -18,12 +18,12 @@
             <h3>Fill in the following fields to find carbon data:</h3>
             <div class="row columns">
                 <label>Driving from: 
-                    <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required>
+                    <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required onclick="clearDisplay()">
                 </label>
             </div>
             <div class="row columns">
                 <label>To: 
-                    <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Florida" required>
+                    <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Florida" required onclick="clearDisplay()">
                 </label>
             </div>
             <br>
@@ -31,13 +31,16 @@
                 <span>Calculate Carbon Footprint</span><i class="fa fa-heart"></i>
             </button>
             <br>
-            <button type="button" onclick="localStorage.clear()" class="button-hover-like button"
-            id="reset">
-                <span>Clear Results</span>
+            <button type="button" onclick="clearDisplay()" class="button-hover-like button"
+            id="reset"><span>Clear Results</span><i class="fa fa-heart"></i>
+            </button>
+            <br>
+            <button type="button" onclick="saveToLocalStorage()" class="button-hover-like button"><span>Save To Total</span><i class="fa fa-heart"></i>
             </button>
         </form>
     </div>
-    <script src="./assets/js/script.js"></script>
+    <script>function initMap(){}</script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7CrkqI9weRGAmOEwTvAhi7VMIQ-f-w6Y&callback=initMap"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>

@@ -4,9 +4,7 @@ var origin2 = document.getElementById("start-destination");
 var destinationA = document.getElementById("end-destination");
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
-// Launches call to Maps
-function initMap() {
-}
+
 
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
@@ -61,7 +59,7 @@ function callback(response, status) {
           fetch('https://www.carboninterface.com/api/v1/estimates', {
             method: 'POST',
             headers: {
-              'Authorization': 'Bearer Qx7s1muNYFpoAmHwkVH88Q',
+              'Authorization': 'Bearer zIk4XBXPZ3csekiiWwTg',
               'Content-Type': 'application/json'
             },
             // This could be updated to use different types of transport, unit names, and makes/models of car
@@ -81,8 +79,7 @@ function callback(response, status) {
               output.setAttribute('id', 'output');
               output.textContent = 'Driving from ' + origins + ' to ' + destinations + ' will release ' + carbonOutput + ' pounds of carbon into the atmosphere.';
               document.body.appendChild(output);
-              // Stores the carbon output to local storage
-              localStorage.setItem(localStorage.length+1, carbonOutput);
+              
               totalCarbonNumber = 0;
               // Creates an array to receive data from local storage
               totalCarbonArray = [];
@@ -114,3 +111,16 @@ reset.addEventListener('click', function(resetButton) {
   var clearOutputTotal = document.getElementById('outputTotal');
   clearOutputTotal.remove();
 })
+
+function saveToLocalStorage(){
+// Stores the carbon output to local storage
+localStorage.setItem(localStorage.length+1, carbonOutput);
+}
+//clears only the display--keeps local storage
+function clearDisplay(){
+  var clearOutput = document.getElementById("output");
+  clearOutput.remove();
+  var clearOutputTotal = document.getElementById('outputTotal');
+  clearOutputTotal.remove();
+}
+
