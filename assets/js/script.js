@@ -59,7 +59,7 @@ function callback(response, status) {
           fetch('https://www.carboninterface.com/api/v1/estimates', {
             method: 'POST',
             headers: {
-              'Authorization': 'Bearer zIk4XBXPZ3csekiiWwTg',
+              'Authorization': 'Bearer 6V3Qr5O3aMsdS2W4OBExZw',
               'Content-Type': 'application/json'
             },
             // This could be updated to use different types of transport, unit names, and makes/models of car
@@ -97,6 +97,11 @@ function callback(response, status) {
               outputTotal.setAttribute('id', 'outputTotal');
               outputTotal.textContent = 'Driving all of the trips you\'ve searched so far would release ' + totalCarbonNumber + ' pounds of carbon into the atmosphere.';
               document.body.appendChild(outputTotal);
+              
+              var displayCarbon = document.createElement("p")
+              displayCarbon.textContent= totalCarbonNumber + " lbs of carbon";
+              var displayTable = document.getElementById("totalResults");
+              displayTable.appendChild(displayCarbon);
             })
             .catch(error => console.error(error))
           }
@@ -123,4 +128,7 @@ function clearDisplay(){
   var clearOutputTotal = document.getElementById('outputTotal');
   clearOutputTotal.remove();
 }
-
+function clearStorage(){
+  var clearStorage = document.getElementById("totalResults");
+  clearStorage.remove();
+}
