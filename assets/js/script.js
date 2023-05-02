@@ -118,6 +118,9 @@ localStorage.setItem(localStorage.length+1, carbonOutput);
 }
 //clears only the display--keeps local storage
 function clearDisplay(){
-  var display = document.getElementById("output");
-  output.innerHTML = "";
+  var clearOutput = document.getElementById("output");
+  clearOutput.remove();
+  var clearOutputTotal = document.getElementById('outputTotal');
+  clearOutputTotal.remove();
 }
+
