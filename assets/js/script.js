@@ -118,6 +118,7 @@ function saveToLocalStorage(){
 // Stores the carbon output to local storage
 localStorage.setItem(localStorage.length+1, carbonOutput);
 displayAlways();
+clearDisplay();
 }
 //clears only the display--keeps local storage
 function clearDisplay(){
