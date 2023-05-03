@@ -12,12 +12,14 @@
     background-position: center;
     background-repeat: no-repeat;
     font-family: optima;
+   
 }
 
 header{ 
     display: block;
     flex-direction: column;
     align-items: center;
+    font-family: optima;
 }
 
 h1{
@@ -25,23 +27,32 @@ h1{
     color: goldenrod;
     font-size: 500%;
     padding: 2%;
+    letter-spacing: 10px;
+    font-weight:900;
     
 }
 h2{
-    text-align: end;
-    color: rgb(184, 169, 158);
-    font-size: 150%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.69);
+    text-shadow: -1px -1px 0 rgba(255, 0, 0, 0.414), 1px -1px 0 rgba(255, 0, 0, 0.414), -1px 1px 0 rgba(255, 0, 0, 0.414), 1px 1px 0 rgba(255, 0, 0, 0.414);
+    font-size: 130%;
     padding-bottom: 40px;
     padding-right: 30px;
+    font-weight: lighter;
+    letter-spacing: 3px;
 }
 h3{
-  font-family: optima;
+  display: block;
+  text-align: center;
   background-color: black;
   padding: 10px;
+  font-weight: 100;
+  font-size: 18px;
 }
 .container{
   display: flex;
 }
+
 .translucent-form-overlay, .localStorageTable{
   flex: 1;
 }
@@ -74,7 +85,7 @@ label{
     width: 100%;
     background-color: rgba(54, 54, 54, 0.8);
     padding: 30px;
-    color: #a83737;
+    color: white;
     margin: 30px;
   
   }
@@ -91,7 +102,7 @@ label{
   }
    
   .translucent-form-overlay input::placeholder {
-    color: #8a8a8a;
+    color: #f6f2f270;
   }
 
   #output{
@@ -113,7 +124,7 @@ label{
   }
 
   .button-hover-like {
-    border: 2px solid #767676;
+    border: 2px solid rgba(255, 0, 0, 0.414);
     background: transparent;
     color: #767676;
     text-transform: uppercase;
@@ -188,10 +199,11 @@ label{
     background-color: rgb(0, 0, 0);
     color: #fefefe;
     border-bottom: 0;
+    font-size: 18px;
   }
   
   .carbon-table #totalResults {
-    background-color: #e6e6e695;
+    background-color: #e6e6e674;
     font-size: 2rem;
     border-bottom: 0;
   }
