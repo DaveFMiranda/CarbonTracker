@@ -28,7 +28,7 @@ function calculateCarbon() {
   // Return data from DMS
   function callback(response, status) {
     statusCheck = response.rows[0].elements[0].status;
-    // Error message if user searches for a city that DMS can't find, a city with more than one location, or a non-coity
+    // Error message if user searches for a city that DMS can't find, a city with more than one location, or a non-city
     if (statusCheck == "NOT_FOUND") {
       alert(
         "Distance information is not available. If there is more than one place named " +
@@ -87,13 +87,13 @@ function calculateCarbon() {
           var output = document.createElement("div");
           output.setAttribute("id", "output");
           output.textContent =
-            "Driving from " +
+            "Your drive from " +
             origins +
             " to " +
             destinations +
-            " will release " +
+            " will be " + distance + ", release " +
             carbonOutput +
-            " pounds of carbon into the atmosphere.";
+            " pounds of carbon into the atmosphere, and take " + duration + '.';
           document.body.appendChild(output);
 
           // THIS IS WHERE THE LOCAL STORAGE AND RETRIEVAL USED TO BE BUT WE PROBABLY DON'T NEED IT ANYMORE
