@@ -1,59 +1,44 @@
-# CarbonTracker
-Enter your start and end points and learn how much carbon you'll burn
+# Carbon Tracker
+A site that tells you how much carbon you'll produce when you drive from point A to B. It can be used to raise awareness of the impact of your trip on the environment.
+
 Project 1, Group 5 (Yasmeen Nguyen, Dave Miranda, Tommy Ho)
+
+## Description
+Carbon Tracker asks a user for the beginning an end point of their road trip. The user enters that information and information about their car and the site returns the amount of carbon the user will burn on the trip. If the user saves that information, it's added to persistent storage that shows the total for all the trips they've saved, until they clear that total.
+
+-- INSERT SCREENSHOT
+-- INSERT LINK
 
 ## Acceptance Criteria
 Given a road trip,
 WHEN I enter a starting location and ending location,
-THEN the distance is returned,
-WHEN the distance is returned,
-THEN the carbon tracker API returns the amount of carbon burned for the trip
-// NEED TO ADD STUFF ABOUT THE PERSISTENT DATA. THIS WAS UPDATED 4.27 and only applies to the bare-bones app
+THEN the distance is returned.
+WHEN I enter the year, make and model of my car,
+AND when the distance is returned,
+THEN the distance, duration, and amount of carbon burned for the trip are displayed.
+WHEN I save the trip results to the total,
+THEN the total carbon burned for all saved trips is updated and displayed.
 
-## Process
-- picked a project: Karaokr
-- couldn't find a lyrics API that worked
-- redirected to this carbon tracker
-- wrote acceptance criteria
-- wrote outline and pseudocode of basic functionality
-- settled on Google Maps API and the Distance Matrix specifically
-    API Key: AIzaSyA7CrkqI9weRGAmOEwTvAhi7VMIQ-f-w6Y
-- Used Carbon Interface to return carbon produced
-    API Key: Qx7s1muNYFpoAmHwkVH88Q
-- established basic user input, API, and output functionality
-THIS IS WHERE WE ARE AS OF 4.27 PM
+## Installation
+n/a
 
-// ADD LINKS TO DOCUMENTATION? NOTE ABOUT HOW THE CARBON API KEY MAY RUN OUT OF USES?
+## Usage
+This site can be used to see how much carbon your road trip will produce, and to store the total of carbon produced by all of your road trips.
 
-TO DO LIST:
-- style the page
-- clear previous cities entered
-- clear previous output data (add a "clear results" button?)
-- add catch.error to the distance matrix API section
-- add persistent data so it saves cumulatively and gives you a lifetime number
-- error message if there's more than one city with that name
-- error message if you hit search without entering input
-- 
+## Future Development Possibilities
+### Additional User Input
+- metric vs. imperial measurement
+- additional travel modes, e.g., flight or shipping
+- multi-leg trips
+- additional driving options such as avoid tolls
 
-ICEBOX
-    GENERAL
-- pretty up the output so there's an already-existing label and box that the return data goes into
-    
-    CARBON API
-- user inputs car make, model and year, carbon API returns vehicle ID, carbon output prediction is more accurate
-        BUT WHAT IF THE DATABASE DOESN'T HAVE THE USER'S CAR? SET TO A DEFAULT AVERAGE CAR
-- user chooses metric vs. imperial measurements
-- lower-priority: convert pounds of carbon into something more relatable like sea-level rise or temp. increase or deaths
-    OR! Add a comparison: this is how much it would be with an electric car, OR how much gas it's going to take and how much cheaper it would be with an electric car
-- travel mode: could add flight or shipping
-    
-    DISTANCE API
-- could do multi-leg trips
-- can change travel mode to transit, walking, biking, Uber/Lyft
-- driving options like avoid tolls and such
-- could add duration of trip to user output
+### Increased Awareness
+- convert pounds of carbon released into a more relatable number, such as number of heat deaths caused
+- could add total miles driven to persistent storage output
+- a tool to compare carbon produced for the user's planned trip vs. alternatives like walking or public transit
 
+## Credits
+This site uses the Font Awesome CSS framework: https://fontawesome.com/v4/.
 
-WE NEED TO ADD THE APP TO OUR PORTFOLIOS FROM CHALLENGE 2!!!
-
-
+## License
+Please refer to the license in the repo.
