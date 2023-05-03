@@ -21,20 +21,28 @@ header{
 
 }
 h1{
-    color: rgb(230, 217, 28);
+    color: goldenrod;
     font-size: 400%;
     padding: 2%;
 }
 h2{
-    color: rgb(230, 217, 28);
+    color: goldenrod;
     font-size: 200%;
     padding-bottom: 40px;
+}
+h3{
+  background-color: black;
+  padding: 10px;
 }
 .container{
   display: flex;
 }
 .translucent-form-overlay, .localStorageTable{
   flex: 1;
+}
+.localStorageTable{
+  padding: 30px;
+
 }
 
 .translucent-form-overlay {
@@ -47,6 +55,7 @@ h2{
     background-color: rgba(54, 54, 54, 0.8);
     padding: 20px;
     color: #a83737;
+    margin-left: 30px;
   }
   
   .translucent-form-overlay .columns.row {
@@ -136,11 +145,11 @@ h2{
   
 
   .carbon-table {
-    background-color: #fefefe;
-    border: solid 1px #cacaca;
+    background-color:rgba(54, 54, 54, 0.8);
     width: 100%;
     text-align: center;
     list-style-type: none;
+    padding: 40px;
   }
   
   .carbon-table li {
@@ -153,13 +162,13 @@ h2{
   }
   
   .carbon-table .title {
-    background-color: #0a0a0a;
+    background-color: rgb(0, 0, 0);
     color: #fefefe;
     border-bottom: 0;
   }
   
   .carbon-table #totalResults {
-    background-color: #e6e6e6;
+    background-color: #e6e6e695;
     font-size: 2rem;
     border-bottom: 0;
   }

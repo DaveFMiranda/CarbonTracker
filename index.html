@@ -20,6 +20,7 @@
             <div id="particles-js"></div>
             <form>
                 <h3>Fill In The Following Fields To Find Carbon Data:</h3>
+                <br>
                 <div class="row columns">
                     <label>Driving from: 
                         <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required>
@@ -43,11 +44,11 @@
                 </button>
             </form>
         </div>
-        <div class="localStorageTable" id="displayTable">
+        <div class="localStorageTable" id="displayTable" >
             <ul class="carbon-table">
                 <li class="title">Total Carbon Produced</li>
                 <li id="totalResults"></li>
-                <li><button type="button" class="button" onclick="localStorage.clear(), clearStorage()">Clear</button></li>
+                <li><button type="button" class="button-hover-like button" onclick="localStorage.clear(), clearStorage()">Clear<i class="fa fa-heart"></i></button></li>
             </ul>
         </div>
 
