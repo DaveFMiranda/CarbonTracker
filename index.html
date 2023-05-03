@@ -11,8 +11,14 @@
 </head>
 <body>
     <header>
-        <h1>Carbon Tracker</h1>
-        <h2>Let's Find Your Footprint</h2>
+        <div><h1>Carbon Tracker</h1></div>
+        <div class="infoDisplay">
+            <p>Did you know? Burning fossil fuels changes the climate more than any other human activity. Because we put more carbon dioxide into the atmosphere than natural processes can remove, the amount of carbon dioxide in the atmosphere increases every year. We can avoid much of the damage through a combination of decarbonizing our energy supply, pulling CO2 out the atmosphere, and developing more sustainable ways of thriving.
+            </p>
+            <br>
+            <p>To compensate 1 ton (2204.62 lbs) of CO2, 31 to 46 tress are needed.</p>
+            <h2>Let's Find Your Footprint</h2>
+        </div>
     </header>
 
     <div class="container">
@@ -20,34 +26,36 @@
             <div id="particles-js"></div>
             <form>
                 <h3>Fill In The Following Fields To Find Carbon Data:</h3>
+                <br>
+                <br>
                 <div class="row columns">
-                    <label>Driving from: 
-                        <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required>
+                    <label><p>Driving from:</p>
+                        <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required onclick="clearDisplay()">
                     </label>
                 </div>
+                <br>
                 <div class="row columns">
-                    <label>To: 
-                        <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Houston" required>
+                    <label><p>To:</p> 
+                        <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Houston" required onclick="clearDisplay()">
                     </label>
                 </div>
+                <br>
                 <br>
                 <button type="button" onclick="calculateCarbon()" class="button-hover-like button">
                     <span>Calculate Carbon Footprint</span><i class="fa fa-heart"></i>
                 </button>
                 <br>
-                <!-- <button type="button" onclick="clearDisplay()" class="button-hover-like button"
-                id="reset"><span>Clear Results</span><i class="fa fa-heart"></i>
-                </button> -->
                 <br>
                 <button type="button" onclick="saveToLocalStorage(), displayAlways()" class="button-hover-like button"><span>Save Trip Results To Total</span><i class="fa fa-heart"></i>
                 </button>
             </form>
         </div>
-        <div class="localStorageTable" id="displayTable">
+        <div class="localStorageTable" id="displayTable" >
             <ul class="carbon-table">
-                <li class="title">Total Carbon Produced</li>
+                <li class="title">Total Carbon Produced:</li>
                 <li id="totalResults"></li>
-                <li><button type="button" class="button" onclick="localStorage.clear(), clearStorage()">Reset Total Carbon Produced</button></li>
+                <li><button type="button" class="button-hover-like button" onclick="localStorage.clear(), clearStorage()"><span>Clear</span><i class="fa fa-heart"></i></button></li>
+
             </ul>
         </div>
 
