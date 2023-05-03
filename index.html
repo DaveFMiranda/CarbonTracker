@@ -11,8 +11,8 @@
 </head>
 <body>
     <header>
-        <h1>Carbon Tracker</h1>
-        <h2>Let's Find Your Footprint</h2>
+        <div><h1>Carbon Tracker</h1></div>
+        <div><h2>Let's Find Your Footprint</h2></div>
     </header>
 
     <div class="container">
@@ -21,24 +21,24 @@
             <form>
                 <h3>Fill In The Following Fields To Find Carbon Data:</h3>
                 <br>
+                <br>
                 <div class="row columns">
-                    <label>Driving from: 
-                        <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required>
+                    <label><p>Driving from:</p>
+                        <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required onclick="clearDisplay()">
                     </label>
                 </div>
+                <br>
                 <div class="row columns">
-                    <label>To: 
-                        <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Houston" required>
+                    <label><p>To:</p> 
+                        <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Houston" required onclick="clearDisplay()">
                     </label>
                 </div>
+                <br>
                 <br>
                 <button type="button" onclick="calculateCarbon()" class="button-hover-like button">
                     <span>Calculate Carbon Footprint</span><i class="fa fa-heart"></i>
                 </button>
                 <br>
-                <!-- <button type="button" onclick="clearDisplay()" class="button-hover-like button"
-                id="reset"><span>Clear Results</span><i class="fa fa-heart"></i>
-                </button> -->
                 <br>
                 <button type="button" onclick="saveToLocalStorage(), displayAlways()" class="button-hover-like button"><span>Save Trip Results To Total</span><i class="fa fa-heart"></i>
                 </button>
@@ -48,7 +48,7 @@
             <ul class="carbon-table">
                 <li class="title">Total Carbon Produced</li>
                 <li id="totalResults"></li>
-                <li><button type="button" class="button-hover-like button" onclick="localStorage.clear(), clearStorage()">Clear<i class="fa fa-heart"></i></button></li>
+                <li><button type="button" class="button-hover-like button" onclick="localStorage.clear(), clearStorage()"><span>Clear</span><i class="fa fa-heart"></i></button></li>
             </ul>
         </div>
 

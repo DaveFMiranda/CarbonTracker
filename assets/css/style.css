@@ -11,26 +11,31 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    font-family: optima;
 }
 
 header{ 
-    display: flex;
+    display: block;
     flex-direction: column;
     align-items: center;
-    
-
 }
+
 h1{
+    text-align: center;
     color: goldenrod;
-    font-size: 400%;
+    font-size: 500%;
     padding: 2%;
+    
 }
 h2{
-    color: goldenrod;
-    font-size: 200%;
+    text-align: end;
+    color: rgb(184, 169, 158);
+    font-size: 150%;
     padding-bottom: 40px;
+    padding-right: 30px;
 }
 h3{
+  font-family: optima;
   background-color: black;
   padding: 10px;
 }
@@ -41,9 +46,24 @@ h3{
   flex: 1;
 }
 .localStorageTable{
-  padding: 30px;
+  display: flex;
 
 }
+input{
+  background-color: #e6e6e65e;
+  
+}
+.columns.row p{
+  background-color: #000000;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+label{
+  display: flex;
+}
+
+
 
 .translucent-form-overlay {
     display:block;
@@ -53,14 +73,16 @@ h3{
     max-width: 500px;
     width: 100%;
     background-color: rgba(54, 54, 54, 0.8);
-    padding: 20px;
+    padding: 30px;
     color: #a83737;
-    margin-left: 30px;
+    margin: 30px;
+  
   }
   
   .translucent-form-overlay .columns.row {
     display: block;
     justify-content: center;
+    
   }
   
   
@@ -149,7 +171,8 @@ h3{
     width: 100%;
     text-align: center;
     list-style-type: none;
-    padding: 40px;
+    padding: 30px;
+    margin: 30px;
   }
   
   .carbon-table li {
