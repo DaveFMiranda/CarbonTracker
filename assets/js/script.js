@@ -69,7 +69,7 @@ function calculateCarbon() {
       fetch("https://www.carboninterface.com/api/v1/estimates", {
         method: "POST",
         headers: {
-          Authorization: "Bearer 6V3Qr5O3aMsdS2W4OBExZw",
+          Authorization: "Bearer Qx7s1muNYFpoAmHwkVH88Q",
           "Content-Type": "application/json",
         },
         // This could be updated to use different types of transport, unit names, and makes/models of car
