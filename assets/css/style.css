@@ -21,6 +21,18 @@ header{
     align-items: center;
     font-family: optima;
 }
+header p{
+  color: white;
+}
+.infoDisplay{
+  display: flex;
+  flex-direction: column;
+  box-sizing: content-box;
+  border: 1px solid white;
+  padding: 20px;
+  margin: 10px;
+  
+}
 
 h1{
     text-align: center;
@@ -36,8 +48,6 @@ h2{
     color: rgba(255, 255, 255, 0.69);
     text-shadow: -1px -1px 0 rgba(255, 0, 0, 0.414), 1px -1px 0 rgba(255, 0, 0, 0.414), -1px 1px 0 rgba(255, 0, 0, 0.414), 1px 1px 0 rgba(255, 0, 0, 0.414);
     font-size: 130%;
-    padding-bottom: 40px;
-    padding-right: 30px;
     font-weight: lighter;
     letter-spacing: 3px;
 }
