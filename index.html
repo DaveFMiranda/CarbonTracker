@@ -1,67 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carbon Tracker</title>
-    <link rel="stylesheet" href="./assets/css/style.css"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div><h1>Carbon Tracker</h1></div>
-        <div class="infoDisplay">
-            <p>Did you know? Burning fossil fuels changes the climate more than any other human activity. Because we put more carbon dioxide into the atmosphere than natural processes can remove, the amount of carbon dioxide in the atmosphere increases every year. We can avoid much of the damage through a combination of decarbonizing our energy supply, pulling CO2 out the atmosphere, and developing more sustainable ways of thriving.
-            </p>
-            <br>
-            <p>To compensate 1 ton (2204.62 lbs) of CO2, 31 to 46 tress are needed.</p>
-            <h2>Let's Find Your Footprint</h2>
-        </div>
+      <div><h1>Carbon Tracker</h1></div>
+      <div class="infoDisplay">
+        <p>
+          Did you know? Burning fossil fuels changes the climate more than any
+          other human activity. Because we put more carbon dioxide into the
+          atmosphere than natural processes can remove, the amount of carbon
+          dioxide in the atmosphere increases every year. We can avoid much of
+          the damage through a combination of decarbonizing our energy supply,
+          pulling CO2 out the atmosphere, and developing more sustainable ways
+          of thriving.
+        </p>
+        <br />
+        <p>
+          For each ton of carbon released into the atmosphere, 31 to 46 new
+          trees are needed to return to carbon neutrality.
+        </p>
+        <br />
+        <h2>Let's Find Your Footprint</h2>
+      </div>
     </header>
 
     <div class="container">
-        <div class="translucent-form-overlay">
-            <div id="particles-js"></div>
-            <form>
-                <h3>Fill In The Following Fields To Find Carbon Data:</h3>
-                <br>
-                <br>
-                <div class="row columns">
-                    <label><p>Driving from:</p>
-                        <input type="text" id="start-destination" name="start-destination" placeholder="Ex. Kansas City" required onclick="clearDisplay()">
-                    </label>
-                </div>
-                <br>
-                <div class="row columns">
-                    <label><p>To:</p> 
-                        <input type="text" id="end-destination" name="end-destination" placeholder="Ex. Houston" required onclick="clearDisplay()">
-                    </label>
-                </div>
-                <br>
-                <br>
-                <button type="button" onclick="calculateCarbon()" class="button-hover-like button">
-                    <span>Calculate Carbon Footprint</span><i class="fa fa-heart"></i>
-                </button>
-                <br>
-                <br>
-                <button type="button" onclick="saveToLocalStorage(), displayAlways()" class="button-hover-like button"><span>Save Trip Results To Total</span><i class="fa fa-heart"></i>
-                </button>
-            </form>
-        </div>
-        <div class="localStorageTable" id="displayTable" >
-            <ul class="carbon-table">
-                <li class="title">Total Carbon Produced:</li>
-                <li id="totalResults"></li>
-                <li><button type="button" class="button-hover-like button" onclick="localStorage.clear(), clearStorage()"><span>Clear</span><i class="fa fa-heart"></i></button></li>
-
-            </ul>
-        </div>
-
+      <div class="translucent-form-overlay">
+        <div id="particles-js"></div>
+        <form>
+          <h3>Fill In The Following Fields To Find Carbon Data:</h3>
+          <br />
+          <br />
+          <div class="row columns">
+            <label
+              ><p>Driving from:</p>
+              <input
+                type="text"
+                id="start-destination"
+                name="start-destination"
+                placeholder="Ex. Kansas City"
+                required
+                onclick="clearDisplay()"
+              />
+            </label>
+          </div>
+          <br />
+          <div class="row columns">
+            <label
+              ><p>To:</p>
+              <input
+                type="text"
+                id="end-destination"
+                name="end-destination"
+                placeholder="Ex. Houston"
+                required
+                onclick="clearDisplay()"
+              />
+            </label>
+          </div>
+          <br />
+          <br />
+          <button
+            type="button"
+            onclick="calculateCarbon()"
+            class="button-hover-like button"
+          >
+            <span>Calculate Carbon Footprint</span><i class="fa fa-heart"></i>
+          </button>
+          <br />
+          <br />
+          <button
+            type="button"
+            onclick="saveToLocalStorage(), displayAlways()"
+            class="button-hover-like button"
+          >
+            <span>Save Trip Results To Total</span><i class="fa fa-heart"></i>
+          </button>
+        </form>
+      </div>
+      <div class="localStorageTable" id="displayTable">
+        <ul class="carbon-table">
+          <li class="title">Total Carbon Produced:</li>
+          <li id="totalResults"></li>
+          <li>
+            <button
+              type="button"
+              class="button-hover-like button"
+              onclick="localStorage.clear(), clearStorage()"
+            >
+              <span>Clear All Saved Results</span><i class="fa fa-heart"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
-    <script>function initMap(){}</script>
+    <script>
+      function initMap() {}
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7CrkqI9weRGAmOEwTvAhi7VMIQ-f-w6Y&callback=initMap"></script>
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>
