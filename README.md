@@ -4,7 +4,7 @@ A site that tells you how much carbon you'll produce when you drive from point A
 Project 1, Group 5 (Yasmeen Nguyen, Dave Miranda, Tommy Ho)
 
 ## Description
-Carbon Tracker asks a user for the beginning an end point of their road trip. The user enters that information and information about their car and the site returns the amount of carbon the user will burn on the trip. If the user saves that information, it's added to persistent storage that shows the total for all the trips they've saved, until they clear that total.
+Carbon Tracker asks a user for the beginning an end point of their road trip. The user enters that information and the site returns the amount of carbon the user will burn on the trip. If the user saves that information, it's added to persistent storage that shows the total for all the trips they've saved, until they clear that total.
 
 -- INSERT SCREENSHOT
 -- INSERT LINK
@@ -13,8 +13,7 @@ Carbon Tracker asks a user for the beginning an end point of their road trip. Th
 Given a road trip,
 WHEN I enter a starting location and ending location,
 THEN the distance is returned.
-WHEN I enter the year, make and model of my car,
-AND when the distance is returned,
+WHEN the distance is returned,
 THEN the distance, duration, and amount of carbon burned for the trip are displayed.
 WHEN I save the trip results to the total,
 THEN the total carbon burned for all saved trips is updated and displayed.
@@ -31,6 +30,7 @@ This site can be used to see how much carbon your road trip will produce, and to
 - additional travel modes, e.g., flight or shipping
 - multi-leg trips
 - additional driving options such as avoid tolls
+- input fields for user car year, make, and model for more accurate carbon emissions predictions
 
 ### Increased Awareness
 - convert pounds of carbon released into a more relatable number, such as number of heat deaths caused
