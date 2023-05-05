@@ -56,13 +56,11 @@ function calculateCarbon() {
           distanceNumber = distanceWord.replace(/,/g, "");
           var distance = distanceNumber;
           var duration = element.duration.text;
-          console.log(duration);
           var from = origins[i];
           var to = destinations[j];
         }
       }
     }
-    console.log(distance);
 
     // Launches the carbontracker, sends it the distance received above
     function carbonAPI() {
@@ -130,12 +128,10 @@ function calculatedTotal() {
   for (var k = 0; k < localStorage.length; k++) {
     totalCarbonArray.push(parseInt(localStorage.getItem(k + 1)));
   }
-  console.log(totalCarbonArray);
   // Puts out the sum of the numbers in the array/local storage
   for (var m = 0; m < totalCarbonArray.length; m++) {
     totalCarbonNumber += totalCarbonArray[m];
   }
-  console.log(totalCarbonNumber);
 }
 
 //displays total sum on screen load
