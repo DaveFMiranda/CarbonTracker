@@ -7,13 +7,13 @@ var carModel = document.getElementById("car-model");
 var carYear = document.getElementById("car-year");
 var makeMatchFound = false;
 var modelMatchFound = false;
-var modelID = "15b8e4d8-9ea3-41bd-93df-770fa2c932ef";
-console.log(modelID);
+var modelNumber = '';
+// console.log(modelID);
 // var yearMatchFound = false;
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
 function setCar() {
-  var storeID;
+  // var storeID;
   // makeQueryURL = https://www.carboninterface.com/api/v1/vehicle_makes + api key
   fetch("https://www.carboninterface.com/api/v1/vehicle_makes", {
     method: "GET",
@@ -57,6 +57,8 @@ function setCar() {
 
               console.log(carModel.value);
 
+              let modelID = '';
+
               for (p = 0; p < data.length; p++) {
                 if (
                   data[p].data.attributes.name === carModel.value &&
@@ -64,17 +66,20 @@ function setCar() {
                 ) {
                   modelMatchFound = true;
                   console.log(data[p].data.id);
+                  modelID = data[p].data.id;
                   break;
                 }
               }
-              console.log(data[p].data.id);
+              // console.log(data[p].data.id);
               console.log(modelMatchFound);
-              console.log(storeID);
-              let modelID = data[p].data.id;
+              // console.log(storeID);
+              // let modelID = data[p].data.id;
               console.log(modelID);
+              modelNumber = modelID;
+              calculateCarbon();
+              // carbonAPI(modelID);
             })
             .catch((error) => console.error(error));
-          console.log(modelID);
         }
       }
       console.log(makeMatchFound);
@@ -88,9 +93,9 @@ function setCar() {
   console.log(carModel.value);
   console.log(carYear.value);
 
-  modelID = storeID;
+  // modelID = storeID;
 }
-console.log(modelID);
+// console.log(modelID);
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
   var service = new google.maps.DistanceMatrixService();
@@ -146,6 +151,8 @@ function calculateCarbon() {
       }
     }
     console.log(distance);
+    console.log(modelNumber);
+    carbonAPI (modelNumber, distance);
 
     /*
        
@@ -169,63 +176,67 @@ function calculateCarbon() {
         */
 
     // Launches the carbontracker, sends it the distance received above
-    function carbonAPI() {
-      console.log(modelID);
-      fetch("https://www.carboninterface.com/api/v1/estimates", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer Qx7s1muNYFpoAmHwkVH88Q",
-          "Content-Type": "application/json",
-        },
-        // This could be updated to use different types of transport, unit names, and makes/models of car
-        body: JSON.stringify({
-          type: "vehicle",
-          distance_unit: "mi",
-          distance_value: distance,
-          // REPLACE THIS WITH A VARIABLE
-          vehicle_model_id: modelID || "15b8e4d8-9ea3-41bd-93df-770fa2c932ef",
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          carbonOutput = data.data.attributes.carbon_lb;
-          // Creates an element to display the result and displays the result
-          var output = document.createElement("output");
-          output.textContent =
-            "Driving from " +
-            origins +
-            " to " +
-            destinations +
-            " will release " +
-            carbonOutput +
-            " pounds of carbon into the atmosphere and will take you " +
-            duration +
-            ".";
-          document.body.appendChild(output);
-          // Stores the carbon output to local storage
-          localStorage.setItem(localStorage.length + 1, carbonOutput);
-          totalCarbonNumber = 0;
-          // Creates an array to receive data from local storage
-          totalCarbonArray = [];
-          // Converts each local storage value to a number and pushes it to the above array
-          for (var k = 0; k < localStorage.length; k++) {
-            totalCarbonArray.push(parseInt(localStorage.getItem(k + 1)));
-          }
-          // Puts out the sum of the numbers in the array/local storage
-          for (var m = 0; m < totalCarbonArray.length; m++) {
-            totalCarbonNumber += totalCarbonArray[m];
-          }
-          console.log(totalCarbonNumber);
-          // Displays the total carbon output
-          var outputTotal = document.createElement("outputTotal");
-          outputTotal.textContent =
-            "Driving all of the trips you've searched so far would release " +
-            totalCarbonNumber +
-            " pounds of carbon into the atmosphere.";
-          document.body.appendChild(outputTotal);
-        })
-        .catch((error) => console.error(error));
-    }
-    carbonAPI();
+    
+    // carbonAPI();
   }
+}
+
+function carbonAPI(model, distance) {
+  console.log(model);
+  console.log(distance);
+  fetch("https://www.carboninterface.com/api/v1/estimates", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer Qx7s1muNYFpoAmHwkVH88Q",
+      "Content-Type": "application/json",
+    },
+    // This could be updated to use different types of transport, unit names, and makes/models of car
+    body: JSON.stringify({
+      type: "vehicle",
+      distance_unit: "mi",
+      distance_value: distance,
+      // REPLACE THIS WITH A VARIABLE
+      vehicle_model_id: model || "15b8e4d8-9ea3-41bd-93df-770fa2c932ef",
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      carbonOutput = data.data.attributes.carbon_lb;
+      // Creates an element to display the result and displays the result
+      var output = document.createElement("output");
+      output.textContent =
+        /*"Driving from " +
+        origins +
+        " to " +
+        destinations +
+        */
+        " will release " +
+        carbonOutput;
+        /*" pounds of carbon into the atmosphere and will take you " +
+        duration +
+        "."; */
+      document.body.appendChild(output);
+      // Stores the carbon output to local storage
+      localStorage.setItem(localStorage.length + 1, carbonOutput);
+      totalCarbonNumber = 0;
+      // Creates an array to receive data from local storage
+      totalCarbonArray = [];
+      // Converts each local storage value to a number and pushes it to the above array
+      for (var k = 0; k < localStorage.length; k++) {
+        totalCarbonArray.push(parseInt(localStorage.getItem(k + 1)));
+      }
+      // Puts out the sum of the numbers in the array/local storage
+      for (var m = 0; m < totalCarbonArray.length; m++) {
+        totalCarbonNumber += totalCarbonArray[m];
+      }
+      console.log(totalCarbonNumber);
+      // Displays the total carbon output
+      var outputTotal = document.createElement("outputTotal");
+      outputTotal.textContent =
+        "Driving all of the trips you've searched so far would release " +
+        totalCarbonNumber +
+        " pounds of carbon into the atmosphere.";
+      document.body.appendChild(outputTotal);
+    })
+    .catch((error) => console.error(error));
 }
