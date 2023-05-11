@@ -3,7 +3,62 @@
 // var origin1 = new google.maps.LatLng(55.930385, -3.118425);
 var origin2 = document.getElementById("start-destination");
 var destinationA = document.getElementById("end-destination");
+var carMake = document.getElementById("car-make");
+var carModel = document.getElementById("car-model");
+var carYear = document.getElementById("car-year");
+var makeMatchFound = false;
+var modelMatchFound = false;
+var modelNumber = '';
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
+
+function setCar() {
+  fetch("https://www.carboninterface.com/api/v1/vehicle_makes", {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer Qx7s1muNYFpoAmHwkVH88Q",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      for (n = 0; n < data.length; n++) {
+        if (data[n].data.attributes.name === carMake.value) {
+          makeMatchFound = true;
+          var makeID = data[n].data.id;
+          fetch(
+            "https://www.carboninterface.com/api/v1/vehicle_makes/" +
+              makeID +
+              "/vehicle_models",
+            {
+              method: "GET",
+              headers: {
+                Authorization: "Bearer Qx7s1muNYFpoAmHwkVH88Q",
+                "Content-Type": "application/json",
+              },
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              let modelID = '';
+              for (p = 0; p < data.length; p++) {
+                if (
+                  data[p].data.attributes.name === carModel.value &&
+                  data[p].data.attributes.year === parseInt(carYear.value)
+                ) {
+                  modelMatchFound = true;
+                  modelID = data[p].data.id;
+                  break;
+                }
+              }
+              modelNumber = modelID;
+              calculateCarbon();
+            })
+            .catch((error) => console.error(error));
+        }
+      }
+    })
+    .catch((error) => console.error(error));
+}
 
 // Set off by clicking the "Calculate Carbon Footprint" button, begins by calling the Distance Matrix service (DMS)
 function calculateCarbon() {
@@ -24,7 +79,6 @@ function calculateCarbon() {
     },
     callback
   );
-
   // Return data from DMS
   function callback(response, status) {
     statusCheck = response.rows[0].elements[0].status;
@@ -56,26 +110,27 @@ function calculateCarbon() {
           distanceNumber = distanceWord.replace(/,/g, "");
           var distance = distanceNumber;
           var duration = element.duration.text;
-          var from = origins[i];
-          var to = destinations[j];
         }
       }
     }
+    carbonAPI (modelNumber, distance, duration, origins, destinations);
+  }
+}
 
-    // Launches the carbontracker, sends it the distance received above
-    function carbonAPI() {
+// Launches the carbontracker, sends it the distance received above
+    function carbonAPI(model, distance, duration, origins, destinations) {
       fetch("https://www.carboninterface.com/api/v1/estimates", {
         method: "POST",
         headers: {
           Authorization: "Bearer Qx7s1muNYFpoAmHwkVH88Q",
           "Content-Type": "application/json",
         },
-        // This could be updated to use different types of transport, unit names, and makes/models of car
+        // This could be updated to use different types of transport or unit names
         body: JSON.stringify({
           type: "vehicle",
           distance_unit: "mi",
           distance_value: distance,
-          vehicle_model_id: "7268a9b7-17e8-4c8d-acca-57059252afe9",
+          vehicle_model_id: model || "7080745f-2426-41fa-894a-f3151dbfb354",
         }),
       })
         .then((response) => response.json())
@@ -100,9 +155,6 @@ function calculateCarbon() {
         })
         .catch((error) => console.error(error));
     }
-    carbonAPI();
-  }
-}
 
 // Stores the carbon output to local storage
 function saveToLocalStorage() {

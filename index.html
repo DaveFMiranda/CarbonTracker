@@ -70,10 +70,32 @@
             </label>
           </div>
           <br />
+          <div class="row columns">
+                <label
+                ><p>Car year:</p>
+                    <input type="number" id="car-year" name="car-year" placeholder=" Ex. 1993" required onclick="clearDisplay()"
+                    />
+                </label>
+            </div>  
+            <br />  
+            <div class="row columns">
+                <label
+                ><p>Car make:</p>
+                    <input type="text" id="car-make" name="car-make" placeholder="Ex. Toyota" required onclick="clearDisplay()"/>
+                </label>
+            </div>
+            <br />
+            <div class="row columns">
+                <label
+                ><p>Car model:</p>
+                    <input type="text" id="car-model" name="car-model" placeholder="Ex. Corolla" required onclick="clearDisplay()"/>
+                </label>
+            </div>  
+          <br />
           <br />
           <button
             type="button"
-            onclick="calculateCarbon()"
+            onclick="setCar()"
             class="button-hover-like button"
           >
             <span>Calculate Carbon Footprint</span><i class="fa fa-heart"></i>
