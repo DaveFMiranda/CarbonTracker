@@ -8,7 +8,7 @@ var carModel = document.getElementById("car-model");
 var carYear = document.getElementById("car-year");
 var makeMatchFound = false;
 var modelMatchFound = false;
-var modelNumber = '';
+var modelNumber = "";
 // var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
 function setCar() {
@@ -39,7 +39,7 @@ function setCar() {
           )
             .then((response) => response.json())
             .then((data) => {
-              let modelID = '';
+              let modelID = "";
               for (p = 0; p < data.length; p++) {
                 if (
                   data[p].data.attributes.name === carModel.value &&
@@ -113,48 +113,48 @@ function calculateCarbon() {
         }
       }
     }
-    carbonAPI (modelNumber, distance, duration, origins, destinations);
+    carbonAPI(modelNumber, distance, duration, origins, destinations);
   }
 }
 
 // Launches the carbontracker, sends it the distance received above
-    function carbonAPI(model, distance, duration, origins, destinations) {
-      fetch("https://www.carboninterface.com/api/v1/estimates", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer Qx7s1muNYFpoAmHwkVH88Q",
-          "Content-Type": "application/json",
-        },
-        // This could be updated to use different types of transport or unit names
-        body: JSON.stringify({
-          type: "vehicle",
-          distance_unit: "mi",
-          distance_value: distance,
-          vehicle_model_id: model || "7080745f-2426-41fa-894a-f3151dbfb354",
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          carbonOutput = data.data.attributes.carbon_lb;
-          // Creates an element to display the result and displays the result
-          var output = document.createElement("div");
-          output.setAttribute("id", "output");
-          output.textContent =
-            "Your drive from " +
-            origins +
-            " to " +
-            destinations +
-            " will be " +
-            distance +
-            ", release " +
-            carbonOutput +
-            " pounds of carbon into the atmosphere, and take " +
-            duration +
-            ".";
-          document.body.appendChild(output);
-        })
-        .catch((error) => console.error(error));
-    }
+function carbonAPI(model, distance, duration, origins, destinations) {
+  fetch("https://www.carboninterface.com/api/v1/estimates", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer Qx7s1muNYFpoAmHwkVH88Q",
+      "Content-Type": "application/json",
+    },
+    // This could be updated to use different types of transport or unit names
+    body: JSON.stringify({
+      type: "vehicle",
+      distance_unit: "mi",
+      distance_value: distance,
+      vehicle_model_id: model || "7080745f-2426-41fa-894a-f3151dbfb354",
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      carbonOutput = data.data.attributes.carbon_lb;
+      // Creates an element to display the result and displays the result
+      var output = document.createElement("div");
+      output.setAttribute("id", "output");
+      output.textContent =
+        "Your drive from " +
+        origins +
+        " to " +
+        destinations +
+        " will be " +
+        distance +
+        ", release " +
+        carbonOutput +
+        " pounds of carbon into the atmosphere, and take " +
+        duration +
+        ".";
+      document.body.appendChild(output);
+    })
+    .catch((error) => console.error(error));
+}
 
 // Stores the carbon output to local storage
 function saveToLocalStorage() {

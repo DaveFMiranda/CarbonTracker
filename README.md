@@ -7,14 +7,14 @@ Project 1, Group 5 (Yasmeen Nguyen, Dave Miranda, Tommy Ho)
 As an environmentally-conscious driver, I want to know how much carbon my road trips will produce.
 
 ## Description
-Carbon Tracker asks a user for the beginning an end point of their road trip. The user enters that information and the site returns the amount of carbon the user will burn on the trip. If the user saves that information, it's added to persistent storage that shows the total for all the trips they've saved, until they clear that total.
+Carbon Tracker asks a user for the beginning an end point of their road trip and the year, make, and model of their car. The user enters that information and the site returns the amount of carbon the user will burn on the trip. If the user saves that information, it's added to persistent storage that shows the total for all the trips they've saved, until they clear that total.
 
 ![My Image](/assets/carbonTrackerIMG.png)
 https://davefmiranda.github.io/CarbonTracker/
 
 ## Acceptance Criteria
 Given a road trip,
-WHEN I enter a starting location and ending location,
+WHEN I enter a starting location, ending location, and car year, make, and model,
 THEN the distance is returned.
 WHEN the distance is returned,
 THEN the distance, duration, and amount of carbon burned for the trip are displayed.
@@ -33,7 +33,6 @@ This site can be used to see how much carbon your road trip will produce, and to
 - additional travel modes, e.g., flight or shipping
 - multi-leg trips
 - additional driving options such as avoid tolls
-- input fields for user car year, make, and model for more accurate carbon emissions predictions
 
 ### Increased Awareness
 - convert pounds of carbon released into a more relatable number, such as number of heat deaths caused
@@ -41,7 +40,9 @@ This site can be used to see how much carbon your road trip will produce, and to
 - a tool to compare carbon produced for the user's planned trip vs. alternatives like walking or public transit
 
 ## Credits
-This site uses the Font Awesome CSS framework: https://fontawesome.com/v4/.
+This site uses the Foundation CSS framework: https://get.foundation/.
+It also uses particles.js: https://vincentgarreau.com/particles.js/.
+It also pulls from the Font Awesome library: https://fontawesome.com/.
 
 ## License
 Please refer to the license in the repo.
