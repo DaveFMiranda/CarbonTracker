@@ -46,7 +46,6 @@ function setCar() {
                   data[p].data.attributes.year === parseInt(carYear.value)
                 ) {
                   modelMatchFound = true;
-                  console.log(data[p].data.id);
                   modelID = data[p].data.id;
                   break;
                 }
@@ -80,7 +79,6 @@ function calculateCarbon() {
     },
     callback
   );
-
   // Return data from DMS
   function callback(response, status) {
     statusCheck = response.rows[0].elements[0].status;
@@ -115,12 +113,12 @@ function calculateCarbon() {
         }
       }
     }
-    carbonAPI (modelNumber, distance);
+    carbonAPI (modelNumber, distance, duration, origins, destinations);
   }
 }
 
 // Launches the carbontracker, sends it the distance received above
-    function carbonAPI(model, distance) {
+    function carbonAPI(model, distance, duration, origins, destinations) {
       fetch("https://www.carboninterface.com/api/v1/estimates", {
         method: "POST",
         headers: {
@@ -132,7 +130,7 @@ function calculateCarbon() {
           type: "vehicle",
           distance_unit: "mi",
           distance_value: distance,
-          vehicle_model_id: model || "15b8e4d8-9ea3-41bd-93df-770fa2c932ef",
+          vehicle_model_id: model || "7080745f-2426-41fa-894a-f3151dbfb354",
         }),
       })
         .then((response) => response.json())
@@ -182,7 +180,6 @@ function calculatedTotal() {
   for (var k = 0; k < localStorage.length; k++) {
     totalCarbonArray.push(parseInt(localStorage.getItem(k + 1)));
   }
-  console.log(totalCarbonArray);
   // Puts out the sum of the numbers in the array/local storage
   for (var m = 0; m < totalCarbonArray.length; m++) {
     totalCarbonNumber += totalCarbonArray[m];
